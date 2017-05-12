@@ -1,0 +1,14 @@
+language: node_js
+sudo: false
+cache: yarn
+node_js:
+- '6.1'
+script: yarn test && yarn build
+deploy:
+  provider: npm
+  email: albert.fazullin@flatstack.com
+  api_key:
+    secure: ZOg2N5PAey+kJrDqycUsz3ww9YryJns9o/hAie79sQDfVnzo+YKSEPjIlbLnEDOwzwePS+3HdpC1+AyKW1zwWFMMDZSFri/X8g5xCCm24xXt+VuLeh9IItCibrXG9dfv8AbUDC7+1ke9ZhPHbVNcxSQcNLLpHOrwLY/9mb30ZBuuqPhTotQc1REQzEz7I3syaowUN9GpvEnD7UHCQaWsF7rqMs3AXsLoYCBfep6LfpvBRptbzLPaGxGzarRrBQiADChVPhpoo/qJcdLKsr2twUA9yo5oerlFwAggsC/xHj9lfG0ToP+vF5SQ7xqaOHFtnvuYwzSpEPVnp0kBED5xfx8Gf2448/y80PGeNOORfOneZuAJLN/zdRVrzf4qb3O20AlIXcfUgUhEQWxqudW1k7PbXz4BVIB2WTNd2ktxHm0uc6lOFUSf/18aTfzY87nv8k6Oqab+e1NdC+tdTL51r3qjN+eZlCIrqXiHSBLUy2wGtFssDR3+xgaWmADIkrDWNAneKFmvQMBWr0zjAxU2sriVu6hSuuaHapy5ODYtWMkmC3VxWgd0fksIIbIY14djiPbhgxpFzOHWymyohyfsdc5LAeeKcc1wew4qVFTNrnGURQBGoBXl63dK6X/hBWpg3yq2QHugJrjDM5KHVCvWdU8kstpgci7JzLQnOXnS880=
+  on:
+    tags: true
+    repo: AlbertFazullin/fs-jwt-react-tools
