@@ -1,21 +1,21 @@
 # JWT React Tools
-[![Build Status](https://travis-ci.org/AlbertFazullin/fs-jwt-react-tools.svg?branch=master)](https://travis-ci.org/AlbertFazullin/fs-jwt-react-tools)
-[![Coverage Status](https://coveralls.io/repos/github/AlbertFazullin/fs-jwt-react-tools/badge.svg?branch=master)](https://coveralls.io/github/AlbertFazullin/fs-jwt-react-tools?branch=master)
+[![Build Status](https://travis-ci.org/hex22a/jwt-react-tools.svg?branch=master)](https://travis-ci.org/hex22a/jwt-react-tools)
+[![Coverage Status](https://coveralls.io/repos/github/hex22a/jwt-react-tools/badge.svg?branch=master)](https://coveralls.io/github/hex22a/jwt-react-tools?branch=master)
 
 React HOC to make usage of JWT extremely fun
 
 ## Installation
 
-`yarn add fs-jwt-xhr-hook` 
+`yarn add jwt-xhr-hook` 
 
-or `npm i --save fs-jwt-xhr-hook` if you are still using npm
+or `npm i --save jwt-xhr-hook` if you are still using npm
 
 ## Usage
 
 This package provides a decorator to add isAuthenticated flag and jwtPayload inside component's child context
 ```javascript
 import React, { Component, PropTypes } from 'react';
-import jwtContext from 'fs-jwt-react-tools';
+import jwtContext from 'jwt-react-tools';
 
 
 @jwtContext
@@ -83,10 +83,6 @@ Menu.contextTypes = {
 PR's are welcome 👍
 
 ## Credits
-Maintained by [Albert Fazullin](http://github.com/AlbertFazullin).
+Maintained by [Albert Fazullin](http://github.com/AlbertFazullin), [hex22a](http://github.com/hex22a)
 
 Twitter: [@hex22a](https://twitter.com/hex22a)
-
-Written by [Flatstack](http://www.flatstack.com).
-
-[<img src="http://www.flatstack.com/logo.svg" width="100"/>](http://www.flatstack.com)
