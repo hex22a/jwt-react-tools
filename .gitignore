@@ -4,3 +4,4 @@ dist
 .idea
 coverage
 .ruby-version
+/npm-debug.log
