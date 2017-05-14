@@ -1,6 +1,6 @@
 {
   "name": "jwt-react-tools",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "main": "./dist/index.js",
   "repository": "git@github.com:hex22a/jwt-react-tools.git",
   "description": "React HOC to make usage of JWT extremely fun",
