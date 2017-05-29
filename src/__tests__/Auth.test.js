@@ -40,7 +40,15 @@ describe('Auth', () => {
     expect(actualPayload).to.deep.equal(expectedPayload);
   });
 
-  it('Returns null when no token found in local storage', () => {
+  it('Returns undefined token when no token found in local storage', () => {
+    // Act
+    const actualToken= expectedAuth.getToken();
+
+    // Assert
+    expect(actualToken).to.be.undefined;
+  });
+
+  it('Returns null payload when no token found in local storage', () => {
     // Act
     const actualPayload = expectedAuth.getPayload();
 
