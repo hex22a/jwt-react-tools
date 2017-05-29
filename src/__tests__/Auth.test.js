@@ -39,4 +39,12 @@ describe('Auth', () => {
     // Assert
     expect(actualPayload).to.deep.equal(expectedPayload);
   });
+
+  it('Returns null when no token found in local storage', () => {
+    // Act
+    const actualPayload = expectedAuth.getPayload();
+
+    // Assert
+    expect(actualPayload).to.be.null;
+  });
 });
