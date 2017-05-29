@@ -2,48 +2,41 @@
 /**
  * Crafted by x22a on 02.04.17.
  */
-import Auth from '../Auth';
+import expectedAuth from '../Auth';
 import { expect } from 'chai';
 
 describe('Auth', () => {
-  it('Saves token to local storage', () => {
-    const authToken = 'foo';
-    const refreshToken = 'bar';
-    Auth.authenticateUser(authToken, refreshToken);
-    expect(Auth.getToken()).to.equal(authToken);
+  afterEach(() => {
+    localStorage.clear();
   });
 
-  it('Deletes token from local storage', () => {
-    const authToken = 'foo';
-    const refreshToken = 'bar';
-    Auth.authenticateUser(authToken, refreshToken);
-    Auth.deauthenticateUser();
-    expect(Auth.getToken()).to.be.an('undefined');
+  it('Loads token from local storage by name', () => {
+    // Arrange
+    const expectedTokenKey = 'jwt';
+    const expectedToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIn0.Q6CM1qIz2WTgTlhMzpFL8jI8xbu9FFfj5DY_bGVY98Y';
+    localStorage.setItem(expectedTokenKey, expectedToken);
+
+    // Act
+    const actualToken = expectedAuth.getToken(expectedTokenKey);
+
+    // Assert
+    expect(actualToken).to.be.equal(expectedToken);
   });
 
-  it('Checks auth flag', () => {
-    const authToken = 'foo';
-    const refreshToken = 'bar';
-    Auth.authenticateUser(authToken, refreshToken);
-    expect(Auth.isUserAuthenticated()).to.equal(true);
-  });
+  it('Decodes token payload', () => {
+    const expectedTokenKey = 'jwt';
+    const expectedToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIn0.Q6CM1qIz2WTgTlhMzpFL8jI8xbu9FFfj5DY_bGVY98Y';
+    const expectedPayload = {
+      "sub": "1234567890",
+      "name": "John Doe",
+    };
 
-  it('Saves refresh token', () => {
-    const authToken = 'foo';
-    const refreshToken = 'bar';
-    Auth.authenticateUser(authToken, refreshToken);
-    expect(Auth.getRefreshToken()).to.equal(refreshToken);
-  });
+    localStorage.setItem(expectedTokenKey, expectedToken);
 
-  it('Returns null payload if token not set', () => {
-    Auth.deauthenticateUser();
-    expect(Auth.getPayload()).to.be.a('null');
-  });
+    // Act
+    const actualPayload = expectedAuth.getPayload();
 
-  it('Returns object payload', () => {
-    const authToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ';
-    const refreshToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ';
-    Auth.authenticateUser(authToken, refreshToken);
-    expect(Auth.getPayload()).to.be.an('object');
+    // Assert
+    expect(actualPayload).to.deep.equal(expectedPayload);
   });
 });

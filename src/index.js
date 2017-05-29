@@ -1,1 +1,1 @@
-module.exports = require('./jwtContext');
+module.exports = require('./jwt');

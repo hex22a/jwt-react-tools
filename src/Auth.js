@@ -1,54 +1,20 @@
+export const defaultTokenKey = 'jwt';
+
 class Auth {
-
-  /**
-   * Authenticate a user. Save a token string in Local Storage
-   *
-   * @param {string} token
-   */
-  static authenticateUser(authToken, refreshToken) {
-    localStorage.setItem('authToken', authToken);
-    localStorage.setItem('refreshToken', refreshToken);
-  }
-
-  /**
-   * Check if a user is authenticated - check if a token is saved in Local Storage
-   *
-   */
-  static isUserAuthenticated() {
-    return localStorage.getItem('authToken') !== null;
-  }
-
-  /**
-   * Deauthenticate a user. Remove a token from Local Storage.
-   *
-   */
-  static deauthenticateUser() {
-    localStorage.removeItem('authToken');
-    localStorage.removeItem('refreshToken');
-  }
-
   /**
    * Get a token value.
-   *
+   * @param key {string} key in Local Storage where token is placed
    */
-  static getToken() {
-    return localStorage.getItem('authToken');
-  }
-
-  /**
-   * Get a token value.
-   *
-   */
-  static getRefreshToken() {
-    return localStorage.getItem('refreshToken');
+  static getToken(key = defaultTokenKey) {
+    return localStorage.getItem(key);
   }
 
   /**
    * Get token payload
-   * @param token
+   * @param token {string} Defaults to token from Local Storage
    * @returns {object} payload
    */
-  static getPayload(token = this.getToken()) {
+  static getPayload(token = this.getToken(defaultTokenKey)) {
     if (!token) return null;
     let payload = token.split('.')[1];
     payload = JSON.parse(Buffer(payload, 'base64').toString('ascii'));

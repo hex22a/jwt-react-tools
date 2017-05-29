@@ -12,13 +12,32 @@ or `npm i --save jwt-xhr-hook` if you are still using npm
 
 ## Usage
 
-This package provides a decorator to add isAuthenticated flag and jwtPayload inside component's child context
+This package provides a decorator to add isAuthenticated flag and jwtPayload inside component's props and child context
 ```javascript
 import React, { Component, PropTypes } from 'react';
-import jwtContext from 'jwt-react-tools';
+import JWT from 'jwt-react-tools';
 
 
-@jwtContext
+@JWT()
+class Main extends Component {
+
+  render() {
+    return (
+      <div>foo</div>
+    );
+  }
+}
+
+```
+
+This will provide isAuthenticated flag and jwtPayload object from token stored in Local Storage by key 'jwt'. If you want to load JWT from another key pass key name through argument.
+
+```javascript
+import React, { Component, PropTypes } from 'react';
+import JWT from 'jwt-react-tools';
+
+
+@JWT('customKey')
 class Main extends Component {
 
   render() {
