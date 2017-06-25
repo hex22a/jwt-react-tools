@@ -6,7 +6,14 @@ import expectedAuth from '../Auth';
 import { expect } from 'chai';
 
 describe('Auth', () => {
+  let mockLocalStorage = null;
+
+  beforeEach(() => {
+    mockLocalStorage = localStorage;
+  });
+
   afterEach(() => {
+    localStorage = mockLocalStorage;
     localStorage.clear();
   });
 
@@ -49,6 +56,17 @@ describe('Auth', () => {
   });
 
   it('Returns null payload when no token found in local storage', () => {
+    // Act
+    const actualPayload = expectedAuth.getPayload();
+
+    // Assert
+    expect(actualPayload).to.be.null;
+  });
+
+  it('Returns null when unable to locate localStorage', () => {
+    // Arrange
+    localStorage = null;
+
     // Act
     const actualPayload = expectedAuth.getPayload();
 

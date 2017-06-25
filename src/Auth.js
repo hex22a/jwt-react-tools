@@ -6,6 +6,7 @@ class Auth {
    * @param key {string} key in Local Storage where token is placed
    */
   static getToken(key = defaultTokenKey) {
+    if (!localStorage) return null;
     return localStorage.getItem(key);
   }
 
