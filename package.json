@@ -45,6 +45,6 @@
     "webpack": "^2.3.2"
   },
   "dependencies": {
-    "react": "^15.4.2"
+    "react": "^15.7.0"
   }
 }
